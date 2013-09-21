@@ -2,3 +2,24 @@
 	padding: 20px;
 	border: 1px dotted #cecece;
 }
+
+#bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+.splash {
+	margin-top: 80px;
+	background-color:rgba(0,0,0,0.5);
+	color: #fff;
+	.panel {
+		background-color:rgba(0,0,0,0.8);
+	}
+	h1, p {
+		color: #fff;
+	}
+}

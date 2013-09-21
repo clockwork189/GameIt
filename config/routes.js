@@ -18,6 +18,9 @@ module.exports = function(app, passport, auth) {
     app.get('/users/me', users.me);
     app.get('/users/:userId', users.show);
 
+    var games = require('../app/controllers/games');
+    app.get('/games', games.index);
+
     //Setting the facebook oauth routes
     app.get('/auth/facebook', passport.authenticate('facebook', {
         scope: ['email', 'user_about_me'],
