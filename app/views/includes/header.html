@@ -1,0 +1,39 @@
+<!-- Header and Nav -->
+  <nav class="top-bar">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="/">
+            GameIt
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Top Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        {% if user %}
+            <li><a href="#">Hi {{user.firstName}} {{user.lastName}}</a></li>
+            <li class="divider"></li>
+            <li><a href="/users/dashboard">Dashboard</a></li>
+            <li><a href="/users/browse">Browse Games</a></li>
+            <li><a href="/users/profile">Profile</a></li>
+            <li class="divider"></li>
+            <li><a href="/logout">Log Out</a></li>
+        {% else %}
+          <li class="divider"></li>
+          <li><a href="/users/signup">Sign Up</a></li>
+          <li class="divider"></li>
+          <li><a href="/about">About Us</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Contact Us</a></li>
+          <li class="divider"></li>
+        {% endif %}
+      </ul>
+    </section>
+  </nav>
+  <!-- End Header and Nav -->

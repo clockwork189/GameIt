@@ -1,0 +1,21 @@
+{% extends '../layouts/layout.html' %}
+{% block content %}
+{% include '../includes/header.html' %}
+  <div class="row">
+    <div class="large-6 columns">
+      {% if errors !== undefined %}
+        <div class="fade in alert alert-block alert-error">
+          <a close(data-dismiss="alert", href="javascript:void(0)") x
+          <ul>
+            {% for error in errors %}
+              <li>{{ error.type }}</li>
+            {%endfor%}
+          </ul>
+        </div>
+      {%endif%}
+    </div>
+          {% block auth%}
+          {% endblock %}
+  </div>
+{% include '../includes/footer.html' %}
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'auth.html' %}
+{% block auth %}
+  <!-- Main Grid Section -->
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="large-8 columns">
+        <div class="large-12 columns panel">
+          <form action="/researcher/create" method="post" data-abide>
+            <p class="error">{{ message}}</p>
+            <div class="row">
+              <div class="large-4 columns">
+                <label>Full Name:</label>
+              </div>
+              <div class="large-8 columns">
+                <input type="text" required pattern="[a-zA-Z]+" name="firstName" value="{{user.fullName}}"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-4 columns">
+                <label>Email Address:</label>
+              </div>
+              <div class="large-8 columns">
+                <input type="email" required name="email" value="{{user.email}}" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-4 columns">
+                <label>Password:</label>
+              </div>
+              <div class="large-8 columns">
+                <input type="password" required name="password" value="{{user.password}}"/>
+              </div>
+            </div>
+            <div class="row">
+              <div class="large-4 columns">
+                
+              </div>
+              <div class="large-8 columns">
+                <input type="submit" value="Register" class="button" />
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="large-12 columns text-center">
+          OR if you already have an account<br/><br/>
+          <a href="#" data-reveal-id="user_login" class="button secondary">Login</a>
+        </div>
+      </div>
+      <div class="large-2 columns">
+      </div>
+    </div>
+  </div>
+{% endblock %}
