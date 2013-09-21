@@ -1,0 +1,66 @@
+<div class="large-12 columns">
+  	<div class="panel row">
+  		<div class="row">
+			<div class="large-1 columns">
+		  		<label>Location: </label>
+		  	</div>
+		  	<div class="large-3 columns">
+				<input type="text" placeholder="Location" data-ng-model="location" />
+			</div>
+			<div class="large-1 columns">
+		  		<label>Sport: </label>
+		  	</div>
+		  	<div class="large-3 columns text-left">
+				<input type="text" placeholder="Sport" data-ng-model="sport" />
+			</div>
+			<div class="large-1 columns">
+		  		<label>Level: </label>
+		  	</div>
+		  	<div class="large-3 columns">
+				<select data-ng-model="level">
+					<option>Beginner</option>
+					<option>Intermediate</option>
+					<option>Advanced</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 columns">
+		  		<label>Description: </label>
+		  	</div>
+		  	<div class="large-10 columns">
+				<input type="text" placeholder="Description" data-ng-model="description" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 columns">
+		  		<label>Number of Players: </label>
+		  	</div>
+		  	<div class="large-10 columns">
+				<input type="number" placeholder="Number of Players" data-ng-model="num_players" />
+			</div>
+		</div>
+		<div class="row">
+		  	<div class="large-2 columns">
+		  		<label>Start Time: </label>
+		  	</div>
+		  	<div class="large-4 columns">
+				<input type="text" placeholder="Time" data-ng-model="start_time"/>
+			</div>
+			<div class="large-2 columns">
+		  		<label>End Time: </label>
+		  	</div>
+		  	<div class="large-4 columns">
+				<input type="text" placeholder="Time" data-ng-model="end_time"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="large-2 columns">
+		  		&nbsp;
+		  	</div>
+		  	<div class="large-10 columns">
+				<button data-ng-click="create()">gameIt</button>
+			</div>
+		</div>
+  	</div>
+</div>

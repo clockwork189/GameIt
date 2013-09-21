@@ -2,20 +2,17 @@
 window.app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/articles', {
-            templateUrl: 'views/articles/list.html'
+        when('/create', {
+            templateUrl: '/views/games/create.html'
         }).
-        when('/articles/create', {
-            templateUrl: 'views/articles/create.html'
+        when('/:gameId/edit', {
+            templateUrl: '/views/games/edit.html'
         }).
-        when('/articles/:articleId/edit', {
-            templateUrl: 'views/articles/edit.html'
-        }).
-        when('/articles/:articleId', {
-            templateUrl: 'views/articles/view.html'
+        when('/:gameId', {
+            templateUrl: '/views/games/view.html'
         }).
         when('/', {
-            templateUrl: 'views/index.html'
+            templateUrl: '/views/games/index.html'
         }).
         otherwise({
             redirectTo: '/'
@@ -26,6 +23,6 @@ window.app.config(['$routeProvider',
 //Setting HTML5 Location Mode
 window.app.config(['$locationProvider',
     function($locationProvider) {
-        $locationProvider.hashPrefix("!");
+        $locationProvider.hashPrefix('!');
     }
 ]);
