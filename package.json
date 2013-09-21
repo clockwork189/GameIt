@@ -34,6 +34,7 @@
         "view-helpers": "latest",
         "mean-logger": "latest",
         "forever": "latest",
+        "bower": "latest",
         "grunt": "latest",
         "grunt-cli": "latest",
         "grunt-bower-task": "latest"
