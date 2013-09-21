@@ -7248,3 +7248,8 @@ a.th {
 .splash h1, .splash p {
   color: #fff;
 }
+
+/* line 29, ../sass/_custom.scss */
+.search .columns .panel input[type=text], .search .columns .panel select option {
+  font-size: 32px;
+}

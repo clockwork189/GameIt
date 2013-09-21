@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+{% include '../includes/header.html' %}
+<div class="row search">
+    <div class="large-12 columns">
+      <div class="panel">
+      	<h3 class="subheader secondary">Location</h3>
+			<input type="text" placeholder="Location" />
+      </div><br/>
+      <div class="panel">
+      	<h3 class="subheader secondary">Game</h3>
+			<input type="text" placeholder="Game" />
+      </div><br/>
+      <div class="panel">
+      		<h3 class="subheader secondary">Level</h3>
+			<select>
+				<option>Beginner</option>
+				<option>Intermediate</option>
+				<option>Advanced</option>
+			</select>
+      </div>
+      <div class="panel">
+      		<h3 class="subheader secondary">Time</h3>
+			<input type="text" placeholder="Time"/>
+      </div>
+    </div>
+</div>
+{% include '../includes/footer.html' %}
+{% endblock %}

@@ -1,6 +1,6 @@
 var async = require('async');
 
-module.exports = function(app, passport, auth) {
+module.exports = function(app, passport) {
     //User Routes
     var users = require('../app/controllers/users');
     app.get('/signin', users.signin);
@@ -17,9 +17,6 @@ module.exports = function(app, passport, auth) {
 
     app.get('/users/me', users.me);
     app.get('/users/:userId', users.show);
-
-    var games = require('../app/controllers/games');
-    app.get('/games', games.index);
 
     //Setting the facebook oauth routes
     app.get('/auth/facebook', passport.authenticate('facebook', {
@@ -54,10 +51,20 @@ module.exports = function(app, passport, auth) {
     }), users.authCallback);
 
     //Finish with setting up the userId param
-    // app.param('userId', users.user);
+    app.param('userId', users.user);
 
     //Home route
     var index = require('../app/controllers/index');
     app.get('/', index.render);
 
+    var games = require('../app/controllers/games');
+    app.get('/games', auth, games.index);
+
+};
+var auth = function (req, res, next) {
+    if(!req.isAuthenticated()) {
+        res.redirect('/');
+    } else {
+        next();
+    }
 };

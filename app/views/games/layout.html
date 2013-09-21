@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+	<title>{{ title }}</title>
+	<!-- Included CSS Files -->
+	<link rel="stylesheet" href="/css/app.css">
+	<script src="/lib/custom.modernizr.js"></script>
+	<script src="/lib/jquery/jquery.min.js"></script>
+	<script src="/lib/angular/angular.min.js"></script>
+	<script src="/lib/angular/angular-resource.min.js"></script>
+</head>
+<body>
+  {% block content %}
+  {% endblock %}
+	<script src="/lib/foundation/foundation.js"></script>
+	<script src="/lib/foundation/foundation.alerts.js"></script>
+	<script src="/lib/foundation/foundation.clearing.js"></script>
+	<script src="/lib/foundation/foundation.cookie.js"></script>
+	<script src="/lib/foundation/foundation.dropdown.js"></script>
+	<script src="/lib/foundation/foundation.forms.js"></script>
+	<script src="/lib/foundation/foundation.interchange.js"></script>
+	<script src="/lib/foundation/foundation.joyride.js"></script>
+	<script src="/lib/foundation/foundation.magellan.js"></script>
+	<script src="/lib/foundation/foundation.orbit.js"></script>
+	<script src="/lib/foundation/foundation.placeholder.js"></script>
+	<script src="/lib/foundation/foundation.reveal.js"></script>
+	<script src="/lib/foundation/foundation.section.js"></script>
+	<script src="/lib/foundation/foundation.tooltips.js"></script>
+	<script src="/lib/foundation/foundation.topbar.js"></script>
+	<script>
+		$(document).foundation();
+	</script>
+</body>
+</html>
