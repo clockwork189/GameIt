@@ -2,22 +2,23 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    crypto = require('crypto'),
-    _ = require('underscore');
+    Schema = mongoose.Schema;
 
 
 /**
  * Game Schema
  */
 var GameSchema = new Schema({
-    name: String,
+    players: [String],
+    field_data_id: String,
+    start_time: Date,
+    end_time: Date,
     type: String,
-    location: String,
-    dateCreated: Date,
-    facebook: {},
-    twitter: {},
-    google: {}
+    description: String,
+    num_players: Number,
+    level: String,
+    sport: String,
+    Location: String
 });
 
 mongoose.model('Game', GameSchema);

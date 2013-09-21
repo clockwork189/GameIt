@@ -1,12 +1,15 @@
-extends layouts/default
+{% extends 'layouts/layout.html' %}
+{% block content %}
+{% include 'includes/header.html' %}
+<h1> Oops something went wrong</h1>
+<br/>
+<span>500</span>
 
-block main
-  h1 Oops something went wrong
-  br
-  span 500
-
-block content
-  #error-message-box
-    #error-stack-trace
-      pre
-        code!= error
+<div id="error-message-box">
+    <div id="error-stack-trace">
+      	<pre>
+        	code!= error
+       	</pre>
+    </div>
+</div>
+{% include 'includes/footer.html' %}

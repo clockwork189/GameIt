@@ -16,8 +16,8 @@
       <!-- Top Nav Section -->
       <ul class="right">
         <li class="divider"></li>
-        {% if user %}
-            <li><a href="#">Hi {{user.firstName}} {{user.lastName}}</a></li>
+        {% if user.name.length > 0 %}
+            <li><a href="#">Hi {{user.name}}</a></li>
             <li class="divider"></li>
             <li><a href="/users/dashboard">Dashboard</a></li>
             <li><a href="/users/browse">Browse Games</a></li>
@@ -26,7 +26,7 @@
             <li><a href="/logout">Log Out</a></li>
         {% else %}
           <li class="divider"></li>
-          <li><a href="/users/signup">Sign Up</a></li>
+          <li><a href="/signup">Sign Up</a></li>
           <li class="divider"></li>
           <li><a href="/about">About Us</a></li>
           <li class="divider"></li>

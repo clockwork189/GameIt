@@ -4,6 +4,22 @@
 var mongoose = require('mongoose'),
     User = mongoose.model('User');
 
+
+/**
+ * Find user by id
+ */
+exports.user = function(req, res, next, id) {
+    User.findOne({
+            _id: id
+        })
+        .exec(function(err, user) {
+            if (err) return next(err);
+            if (!user) return next(new Error('Failed to load User ' + id));
+            req.profile = user;
+            next();
+        });
+};
+
 /**
  * Auth callback
  */
@@ -16,7 +32,7 @@ exports.authCallback = function(req, res, next) {
  */
 exports.signin = function(req, res) {
     res.render('users/signin.html', {
-        title: 'Signin',
+        title: 'GameIt: Signin',
         message: req.flash('error')
     });
 };
@@ -25,6 +41,7 @@ exports.signin = function(req, res) {
  * Show sign up form
  */
 exports.signup = function(req, res) {
+    console.log("Here");
     res.render('users/signup.html', {
         title: 'Sign up',
         user: new User()
@@ -72,7 +89,6 @@ exports.create = function(req, res) {
  */
 exports.show = function(req, res) {
     var user = req.profile;
-
     res.render('users/show.html', {
         title: user.name,
         user: user
@@ -84,20 +100,4 @@ exports.show = function(req, res) {
  */
 exports.me = function(req, res) {
     res.jsonp(req.user || null);
-};
-
-/**
- * Find user by id
- */
-exports.user = function(req, res, next, id) {
-    User
-        .findOne({
-            _id: id
-        })
-        .exec(function(err, user) {
-            if (err) return next(err);
-            if (!user) return next(new Error('Failed to load User ' + id));
-            req.profile = user;
-            next();
-        });
 };

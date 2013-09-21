@@ -3,9 +3,10 @@
   <!-- Main Grid Section -->
   <div class="row">
     <div class="large-12 columns">
-      <div class="large-8 columns">
+      <div class="large-6 columns">
         <div class="large-12 columns panel">
-          <form action="/researcher/create" method="post" data-abide>
+          <h4>Register for a gameIt account</h4>
+          <form action="/user/create" method="post" data-abide>
             <p class="error">{{ message}}</p>
             <div class="row">
               <div class="large-4 columns">
@@ -41,12 +42,16 @@
             </div>
           </form>
         </div>
-        <div class="large-12 columns text-center">
-          OR if you already have an account<br/><br/>
-          <a href="#" data-reveal-id="user_login" class="button secondary">Login</a>
-        </div>
       </div>
-      <div class="large-2 columns">
+      <div class="large-6 columns">
+        <div class="large-12 columns panel">
+          <h4>Already Have an account? Sign In</h4>
+          <form method="post" action="/users/session" data-abide>
+            <input type="email" required name="email" placeholder="Email Address" /><br/>
+            <input type="password" required name="password" placeholder="Password" /><br/>
+            <input type="submit" value="Login" class="button" />
+          </form>
+        </div>
       </div>
     </div>
   </div>
