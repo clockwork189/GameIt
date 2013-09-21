@@ -1,7 +1,9 @@
+/* line 1, ../../sass/views/articles.scss */
 h1 {
-    text-align:center
+  text-align: center;
 }
 
+/* line 6, ../../sass/views/articles.scss */
 ul.articles li:not(:last-child) {
-    border-bottom:1px solid #ccc
+  border-bottom: 1px solid #ccc;
 }

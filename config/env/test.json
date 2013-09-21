@@ -1,27 +1,21 @@
 {
-    "db": "mongodb://localhost/mean-test",
-    "port": 3001,
+    "db": "mongodb://localhost/game-test",
     "app": {
-        "name": "MEAN - A Modern Stack - Test"
+        "name": "gameIt: Want to organize or join a pickup game of soccer, basketball or your other favorite sport? Just gameIt!"
     },
     "facebook": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
+        "clientID": "573727706026460",
+        "clientSecret": "bac6f10f5881ab712b5edd962e494b4d",
         "callbackURL": "http://localhost:3000/auth/facebook/callback"
     },
     "twitter": {
-        "clientID": "CONSUMER_KEY",
-        "clientSecret": "CONSUMER_SECRET",
+        "clientID": "NNimHJ7EkwHPP5GfknQR3g",
+        "clientSecret": "DGIwfftdbSw7jgkLq0H6NFJEZqtDg0yvEI4obUgoFE",
         "callbackURL": "http://localhost:3000/auth/twitter/callback"
     },
-    "github": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
-        "callbackURL": "http://localhost:3000/auth/github/callback"
-    },
     "google": {
-        "clientID": "APP_ID",
-        "clientSecret": "APP_SECRET",
+        "clientID": "890983549183.project.googleusercontent.com",
+        "clientSecret": "AIzaSyAzRgG-jYqZSbN5ZZCStvvJ8gtG_7bH9AI",
         "callbackURL": "http://localhost:3000/auth/google/callback"
     }
 }

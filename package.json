@@ -1,12 +1,12 @@
 {
-    "name": "mean",
-    "description": "MEAN - A Modern Stack: MongoDB, ExpressJS, AngularJS, NodeJS. (BONUS: Passport User Support).",
+    "name": "gameIt",
+    "description": "gameIt - A platform to help coordinate pickup games and organize sport league.",
     "version": "1.0.0",
     "private": false,
-    "author": "Amos Haviv",
+    "author": "",
     "repository": {
         "type": "git",
-        "url": "https://github.com/linnovate/mean.git"
+        "url": "https://github.com/clockwork189/GameIt.git"
     },
     "engines": {
         "node": "0.10.x",
@@ -19,7 +19,7 @@
     },
     "dependencies": {
         "express": "latest",
-        "jade": "latest",
+        "swig": "latest",
         "mongoose": "latest",
         "connect-mongo": "latest",
         "connect-flash": "latest",
@@ -41,6 +41,7 @@
     "devDependencies": {
         "supertest": "latest",
         "should": "latest",
+        "grunt-contrib-compass": "~0.3.0",
         "grunt-contrib-watch": "latest",
         "grunt-contrib-jshint": "latest",
         "grunt-nodemon": "latest",

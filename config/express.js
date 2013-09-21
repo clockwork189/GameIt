@@ -5,6 +5,7 @@ var express = require('express'),
     mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
+    swig = require('swig'),
     config = require('./config');
 
 module.exports = function(app, passport) {
@@ -29,7 +30,8 @@ module.exports = function(app, passport) {
 
     //Set views path, template engine and default layout
     app.set('views', config.root + '/app/views');
-    app.set('view engine', 'jade');
+    app.engine('html', swig.renderFile);
+    app.set('view engine', 'html');
 
     //Enable jsonp
     app.enable("jsonp callback");
@@ -44,7 +46,7 @@ module.exports = function(app, passport) {
 
         //express/mongo session storage
         app.use(express.session({
-            secret: 'MEAN',
+            secret: 'GAMEIT',
             store: new mongoStore({
                 url: config.db,
                 collection: 'sessions'

@@ -11,7 +11,6 @@ module.exports = function(grunt) {
             },
             js: {
                 files: ['public/js/**', 'app/**/*.js'],
-                tasks: ['jshint'],
                 options: {
                     livereload: true,
                 },
@@ -23,14 +22,30 @@ module.exports = function(grunt) {
                 },
             },
             css: {
-                files: ['public/css/**'],
+                files: ['public/sass/**'],
+                tasks: ['compass'],
                 options: {
-                    livereload: true
+                    livereload: true,
+                    force: true
                 }
             }
         },
         jshint: {
-            all: ['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']
+            all: ['gruntfile.js']
+        },
+        compass: { //Task
+            dist: { //Target
+                options: {
+                    config: '.compass.rb',
+                    force: true
+                }
+            },
+            dev: { //Another target
+                options: {
+                    config: '.compass.rb',
+                    force: true
+                }
+            }
         },
         nodemon: {
             dev: {
@@ -75,6 +90,7 @@ module.exports = function(grunt) {
     });
 
     //Load NPM tasks 
+    grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-mocha-test');
@@ -86,7 +102,7 @@ module.exports = function(grunt) {
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent']);
+    grunt.registerTask('default', ['jshint', 'compass', 'concurrent']);
 
     //Test task.
     grunt.registerTask('test', ['mochaTest']);
