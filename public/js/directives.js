@@ -22,7 +22,6 @@ window.app.directive('mapTools', function() {
         restrict: 'E',
         templateUrl: '/views/partials/mapTools.html',
         link: function (scope, element, attrs) {
-            var map;
             require(["esri/map", 
                  "dojo/on",
                  "esri/toolbars/edit",
