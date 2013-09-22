@@ -183,7 +183,7 @@
       $("#map_root").css("height", "533px");
       //map.setInfoWindow(infoWindowLite);
       //var infoTemplate = new InfoTemplate("${destination}");
-       feeLayer = FeatureLayer("http://services1.arcgis.com/epWj2EmjrgksS4ol/arcgis/rest/services/gameIt_Field_Fee/FeatureServer/0", {
+      feeLayer = FeatureLayer("http://services1.arcgis.com/epWj2EmjrgksS4ol/arcgis/rest/services/gameIt_Field_Fee/FeatureServer/0", {
       mode: FeatureLayer.MODE_ONDEMAND,
             outFields: ["*"]
           });
@@ -218,9 +218,11 @@
       
       
       featureLayer = FeatureLayer("http://services1.arcgis.com/epWj2EmjrgksS4ol/arcgis/rest/services/gameIt_Fields/FeatureServer/0", {
-      mode: FeatureLayer.MODE_ONDEMAND,
+      mode: FeatureLayer.MODE_SNAPSHOT,
             outFields: ["*"]
           });
+
+      featureLayer.setDefinitionExpression("OBJECTID > 0");
       map.addLayers([featureLayer, feeLayer]);
       
       featureLayer.on("dbl-click", function(evt){
@@ -254,13 +256,13 @@
     });
     
     function addToMap(evt) {
-          var symbol;
-          toolbar.deactivate();
-          map.showZoomSlider();
-          symbol = new SimpleFillSymbol();
-          var graphic = new Graphic(evt.geometry, symbol);
-          map.graphics.add(graphic);
-      
+      var symbol;
+      toolbar.deactivate();
+      map.showZoomSlider();
+      symbol = new SimpleFillSymbol();
+      var graphic = new Graphic(evt.geometry, symbol);
+      map.graphics.add(graphic);
+
       //add to geometry
       var sms = new SimpleMarkerSymbol().setStyle(SimpleMarkerSymbol.STYLE_CIRCLE).setColor(new Color([255,0,0,0.5]));
       var date = new Date().getTime();
@@ -268,7 +270,7 @@
       var infoTemplate = new InfoTemplate("destination");
         var graphic = new Graphic(evt.geometry,sms,attr,infoTemplate);
       featureLayer.applyEdits([graphic],null,null,function(r){console.log(r)},function(r){console.log(e)});
-        }
+    }
 
     geocoder.startup();   
     var toolbar = new Draw(map);
