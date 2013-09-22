@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=7, IE=9, IE=10">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="http://js.arcgis.com/3.6/js/esri/css/esri.css">
+	<link rel="stylesheet" type="text/css" href="res-80x60-transparent.css">
+	
+    <style>
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background-color: #FFF;
+        overflow: hidden;
+        font-family: "Trebuchet MS";
+      }
+	  
+	  #search {
+        margin: 20px 10% 0 10%;
+        position: absolute;
+        width: 80%;
+        z-index: 2;
+      }
+	  
+	  #carousel {
+		bottom: 0px;
+		height: 100px;
+		width: 100%;
+		position: absolute;
+		z-index: 999999;
+		background: black;
+	  }
+	  
+      /* customize geocoder appearance */
+      .simpleGeocoder, .simpleGeocoder .esriGeocoderContainer {
+        font-size: 1em;
+        line-height: 1em;
+        height: 4em;
+        width: 100%;
+      }
+      .simpleGeocoder .esriGeocoder {
+        border: 0;
+        height: 100%;
+        -moz-border-radius: 0px;
+        -webkit-border-radius: 0px;
+        border-radius: 0px;
+        -moz-box-shadow: 0 0 5px #888;
+        -webkit-box-shadow: 0 0 5px #888;
+        box-shadow: 0 0 5px #888;
+      }
+      .simpleGeocoder .esriGeocoderIcon { 
+        display: none;
+        height: 64px;
+        width: 64px;
+      }
+      .simpleGeocoder .esriGeocoder .esriGeocoderReset {
+        margin: 0;
+      }
+      /* show an x icon to clear the current value */
+      .simpleGeocoder .esriGeocoderHasValue .esriGeocoderReset {
+        cursor: pointer; 
+        display: block; 
+        background: url("http://dl.dropbox.com/u/2654618/geocoder-reset.gif") no-repeat;
+      }
+      /* use a different loading icon */
+      .simpleGeocoder .esriGeocoderLoading .esriGeocoderReset {
+        background: url("http://dl.dropbox.com/u/2654618/geocoder-loading.gif") center center no-repeat;
+      }
+      /* make input larger */
+      .simpleGeocoder .esriGeocoder input {
+        font-size: 2.4em;
+        margin: 0 0 0 1.25%;
+        padding: 1% 0 1% 0;
+        width: 75%;
+      }
+      /* use gray in the input box instead of black */
+      .simpleGeocoder .esriGeocoder input, 
+      .simpleGeocoder .esriGeocoder input:focus {
+        color: #686868;
+      }
+      /* get rid of rounded gray border, use a subtle box shadow instead */
+      .simpleGeocoder .esriGeocoderResults {
+        border: 0;
+        -moz-border-radius: 0px;
+        -webkit-border-radius: 0px;
+        border-radius: 0px;
+        -moz-box-shadow: 0 5px 5px -5px #888;
+        -webkit-box-shadow: 0 5px 5px -5px #888;
+        box-shadow: 0 5px 5px -5px #888;
+      }
+      .simpleGeocoder .esriGeocoderResultLast {
+        -moz-border-radius: 0px;
+        -webkit-border-radius: 0px;
+        border-radius: 0px;
+      }
+      .simpleGeocoder .esriGeocoderResult:hover, 
+      .simpleGeocoder .esriGeocoderResultEven:focus, 
+      .simpleGeocoder .esriGeocoderResultOdd:focus {
+        /* default is #EDEDED, use a light blue instead */
+        background-color: #B5DAEA;
+      }
+    </style>
+    <script src="http://js.arcgis.com/3.6/"></script>
+    <script>
+	
+
+      var map;
+
+      require(["esri/map", 
+			   "dojo/on",
+			   "esri/toolbars/edit",
+			   "dojo/_base/Color",
+			   "esri/dijit/Geocoder",  
+			   "esri/symbols/SimpleFillSymbol",
+			   "esri/symbols/SimpleMarkerSymbol",
+			   "esri/InfoTemplate",
+			   "esri/dijit/InfoWindowLite",
+			   "esri/graphic",
+			   "dojo/data/ItemFileReadStore",
+				"dojox/mobile/DataCarousel",
+				"esri/layers/FeatureLayer",
+				"dojox/mobile/parser",
+				"dojo/_base/lang",
+				"esri/toolbars/draw",
+				"dojox/mobile",
+				"dojox/mobile/deviceTheme",
+				"dojo/domReady!"], 
+		function(Map, on, Edit, Color, Geocoder, SimpleFillSymbol, SimpleMarkerSymbol, InfoTemplate, infoWindowLite, Graphic, ItemFileReadStore, DataCarousel, FeatureLayer, Parser, lang, Draw) {
+        
+		var map = new Map("map", {
+          basemap: "topo",
+          center: [-122.45,37.75], // long, lat
+          zoom: 3,
+          sliderStyle: "small"
+        });
+		
+		var editToolbar = new Edit(map);
+		var infoWindowLite = new esri.dijit.InfoWindowLite(null, dojo.create("div", null, map.root));
+        infoWindowLite.startup();
+        
+		
+		map.on("load", mapLoaded);
+
+		var featureLayer;
+		
+		function mapLoaded() {
+		  map.setInfoWindow(infoWindowLite);
+		  var infoTemplate = new InfoTemplate("${destination}");
+		  featureLayer = FeatureLayer("http://services1.arcgis.com/epWj2EmjrgksS4ol/arcgis/rest/services/gameIt_Sports_Fields/FeatureServer/0", {
+			mode: FeatureLayer.MODE_ONDEMAND,
+            outFields: ["destination"],
+            infoTemplate: infoTemplate
+          });
+		  map.addLayer(featureLayer);
+		  
+		  map.graphics.on("dbl-click", function(evt) {
+            //event.stop(evt);
+            activateToolbar(evt.graphic);
+          });
+		}
+
+		var geocoder = new Geocoder({ 
+          map: map,
+		  autoComplete: true,
+		  isDoubleClickZoom: false,
+		  maxLocations: 1
+        }, "search");
+
+		geocoder.on("select", function(data){
+			if (data.result)
+			{
+				var geometry = data.result.feature.geometry;
+				var destination = data.result.name;
+			}
+		});
+		
+		function addToMap(evt) {
+          var symbol;
+          toolbar.deactivate();
+          map.showZoomSlider();
+          symbol = new SimpleFillSymbol();
+          var graphic = new Graphic(evt.geometry, symbol);
+          map.graphics.add(graphic);
+		  
+		  //add to geometry
+		  var sms = new SimpleMarkerSymbol().setStyle(SimpleMarkerSymbol.STYLE_CIRCLE).setColor(new Color([255,0,0,0.5]));
+		  var date = new Date().getTime();
+		  var attr = {"start": date, "end": date, "sport":"soccer","type":0, "location":"tets"};
+		  var infoTemplate = new InfoTemplate("destination");
+	      var graphic = new Graphic(evt.geometry,sms,attr,infoTemplate);
+		  featureLayer.applyEdits([graphic],null,null,function(r){console.log(r)},function(r){console.log(e)});
+        }
+
+		geocoder.startup();		
+		var toolbar = new Draw(map);
+		toolbar.activate(Draw["POLYGON"]);
+		toolbar.on("draw-end", addToMap);
+	
+		function activateToolbar(graphic) {
+          var tool = 0;      
+          //if (registry.byId("tool_move").checked) {
+            tool = tool | Edit.MOVE; 
+          //}
+          //if (registry.byId("tool_vertices").checked) {
+            tool = tool | Edit.EDIT_VERTICES; 
+          //}
+          //if (registry.byId("tool_scale").checked) {
+            tool = tool | Edit.SCALE; 
+          //}
+          //if (registry.byId("tool_rotate").checked) {
+            tool = tool | Edit.ROTATE; 
+          //}
+          //specify toolbar options        
+          var options = {
+            allowAddVertices: true,
+            allowDeleteVertices: true,
+            uniformScaling: false
+          };
+          editToolbar.activate(tool, graphic, options);
+        }
+      });
+    </script>
+  </head>
+    <body>
+		<div id="search"></div>  
+		<div id="map"></div>
+		<div id="carousel"></div>
+	</body>
+</html>

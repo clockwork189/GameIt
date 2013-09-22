@@ -58,8 +58,8 @@ module.exports = function(app, passport) {
     app.get('/', index.render);
 
     var games = require('../app/controllers/games');
+    app.get('/games/map', auth, games.map);
     app.get('/games', auth, games.index);
-
     app.get('/app/games', auth, games.getAllGames);
     app.get('/app/games/:gameId', auth, games.getGameById);
     app.post('/app/games', auth, games.createGame);

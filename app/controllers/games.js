@@ -76,3 +76,8 @@ exports.deleteGame = function (req, res) {
         }
     });
 };
+
+exports.map = function(req, res) {
+    res.render("games/gameIt.html");
+
+}
