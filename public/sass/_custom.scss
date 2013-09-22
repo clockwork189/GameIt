@@ -54,3 +54,15 @@ $orange: #ff6600;
 		}
 	}
 }
+.columns {
+	.orange_back {
+		background-color: lighten($orange, 15%);
+		color: #fff;
+		padding-top:10px;
+		padding-bottom:10px;
+		font-size: 20px;
+		a {
+			color: #fff;
+		}
+	}
+}
