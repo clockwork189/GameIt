@@ -1,3 +1,4 @@
+$orange: #ff6600;
 .page_tools {
 	padding: 20px;
 	border: 1px dotted #cecece;
@@ -23,10 +24,30 @@
 		color: #fff;
 	}
 }
-.search {
-	.columns {
-		.panel {
-			
+
+.iphone {
+	background: url("../../img/backgrounds/phone.png");
+	width: 820px;
+	height:1006px;
+	padding-top: 173px;
+	padding-left: 145px;
+	background-size: 100%;
+}
+
+.start {
+	.orange_back {
+		background-color: lighten($orange, 15%);
+		color: #fff;
+		padding-top:10px;
+		padding-bottom:10px;
+		font-size: 20px;
+	}
+	.large-12 {
+		&.columns {
+			padding: 0px;
+			padding-top:10px;
+			padding-bottom:10px;
+			font-size: 20px;
 		}
 	}
 }

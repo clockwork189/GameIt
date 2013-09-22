@@ -1,19 +1,23 @@
 {% extends 'layouts/layout.html' %}
 {% block content %}
-<img src="img/backgrounds/blurred_lines.jpeg" id="bg"/>
-<div class="row splash">
-    <div class="large-12 columns">
-      <div class="panel">
-        <h1 class="text-center"><img src="/img/gameIt_White.png" style="width:180px;"/></h1>
+<div class="row">
+    <div class="large-6 columns" style="padding-top: 100px;">
+        <h1 class="text-center"><img src="/img/gameIt.png"/></h1>
         <p>
         	We bring active people together to organize, discover and join a friendly game of their favorite sport. Search by location, game &amp; skill level, see who else is playing, let others know you're in. Have some free time? Just gameIt!
         </p>
         
         <div class="row">
           <div class="large-12 columns text-center">
-            <a href="games/search" class="button large">Get Started</a>
+            <div class="large-8 columns"><input type="email" /></div>
+            <div class="large-4 columns"><a href="games/search" class="medium orange_back">Sign Up</a></div>
           </div>
         </div>
+    </div>
+    <div class="large-6 columns">
+      <div class="iphone">
+        <iframe src="http://localhost:3000/games#!/game/map" width="355px" height="530" style="overflow:hidden;" frameBorder="0"></iframe>
+        <!-- <iframe src="http://localhost:3000/games/map" width="355px" height="530" style="overflow:hidden;" frameBorder="0"></iframe> -->
       </div>
     </div>
 </div>

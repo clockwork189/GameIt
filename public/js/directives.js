@@ -16,3 +16,13 @@ window.app.directive('gameTools', function() {
         }
     };
 });
+
+window.app.directive('mapTools', function() {
+    return {
+        restrict: 'E',
+        templateUrl: '/views/partials/mapTools.html',
+        link: function (scope, element, attrs) {
+
+        }
+    };
+});
