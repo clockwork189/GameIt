@@ -1,28 +1,29 @@
-Sun Sep 22 2013 15:32:37 GMT-0400 (EDT):
-{ [Error: getaddrinfo ENOTFOUND]
+Sun Sep 22 2013 17:48:45 GMT-0400 (EDT):
+{ [Error: Unable to locate site named mywebsite]
   stack: [Getter/Setter],
-  code: 'ENOTFOUND',
-  errno: 'ENOTFOUND',
-  syscall: 'getaddrinfo',
   __frame: 
-   { name: 'site_doSitePUT__19',
-     line: 1092,
+   { name: 'lookupSiteNameAndWebSpace',
+     line: 605,
      file: '/usr/local/azure/lib/commands/site._js',
      prev: 
-      { name: '__11',
-        line: 771,
+      { name: '__9',
+        line: 731,
         file: '/usr/local/azure/lib/commands/site._js',
         prev: undefined,
         active: false,
-        offset: 11,
+        offset: 8,
         col: 10 },
      active: false,
-     offset: 5,
-     col: 13 },
+     offset: 7,
+     col: 4 },
   rawStack: [Getter] }
-Error: getaddrinfo ENOTFOUND
-    at errnoException (dns.js:37:11)
-    at Object.onanswer [as oncomplete] (dns.js:124:16)
-    at site_doSitePUT__19 (/usr/local/azure/lib/commands/site._js:1097:13)
-    at __11 (/usr/local/azure/lib/commands/site._js:782:10)
+Error: Unable to locate site named mywebsite
+    at ___ (/usr/local/azure/lib/commands/site._js:601:20)
+    at ___ (/usr/local/azure/node_modules/streamline/lib/callbacks/runtime.js:85:13)
+    at ___ (/usr/local/azure/lib/commands/site._js:1046:131)
+    at __tryCatch (/usr/local/azure/node_modules/streamline/lib/callbacks/runtime.js:141:4)
+    at ___ (/usr/local/azure/lib/commands/site._js:1046:67)
+    at site_doSitesGet__18 (/usr/local/azure/lib/commands/site._js:1046:33)
+    at lookupSiteNameAndWebSpace (/usr/local/azure/lib/commands/site._js:612:4)
+    at __9 (/usr/local/azure/lib/commands/site._js:739:10)
 

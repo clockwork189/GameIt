@@ -49,7 +49,8 @@ module.exports = function(app, passport) {
             secret: 'GAMEIT',
             store: new mongoStore({
                 url: config.db,
-                collection: 'sessions'
+                collection: 'sessions',
+                auto_reconnect: true
             })
         }));
 
