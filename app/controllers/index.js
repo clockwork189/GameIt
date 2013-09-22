@@ -8,6 +8,5 @@ var mongoose = require('mongoose'),
 
 exports.render = function(req, res) {
 	var user = req.user || undefined;
-	console.log("user: ", req.user);
     res.render('index.html', { user: user, title: 'GameIt: Home'} );
 };
