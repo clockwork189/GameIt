@@ -179,10 +179,10 @@
             //map.setInfoWindow(infoWindowLite);
             //var infoTemplate = new InfoTemplate("${destination}");
             feeLayer = FeatureLayer("http://services1.arcgis.com/epWj2EmjrgksS4ol/arcgis/rest/services/gameIt_Field_Fee/FeatureServer/0", {
-                mode: FeatureLayer.MODE_ONDEMAND,
+                mode: FeatureLayer.MODE_SNAPSHOT,
                 outFields: ["*"]
             });
-          
+             feeLayer.setDefinitionExpression("OBJECTID > 0");
           
             var infoSymbol = new esri.symbol.PictureMarkerSymbol({
                 "angle": 0,
@@ -211,9 +211,12 @@
             feeLayer.setRenderer(renderer);
           
             featureLayer = FeatureLayer("http://services1.arcgis.com/epWj2EmjrgksS4ol/arcgis/rest/services/gameIt_Fields/FeatureServer/0", {
-                mode: FeatureLayer.MODE_ONDEMAND,
+                mode: FeatureLayer.MODE_SNAPSHOT,
                 outFields: ["*"]
             });
+
+            featureLayer.setDefinitionExpression("OBJECTID > 0");
+          
             map.addLayers([featureLayer, feeLayer]);
           
             featureLayer.on("dbl-click", function(evt){
@@ -255,7 +258,7 @@
             var weather = "Partly Cloudy, 12 C";
             var level = "Intermediate";
 
-            $("#map").html("<a href='/games#!/game/start' style='width: 100%;height: 520px;display: block;'><img src='/img/backgrounds/conversation.png' /></a>");
+            $("#map").prepend("<a href='/games#!/game/start' style='width: 100%;height: 520px;display: block;'><img src='/img/backgrounds/conversation.png' /></a>");
             $("#search").hide();
         }
 
