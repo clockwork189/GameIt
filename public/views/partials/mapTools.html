@@ -232,6 +232,9 @@
             var date = new Date(graphic.attributes.date);
             var weather = "Partly Cloudy, 12 C";
             var level = "Intermediate";
+
+            $("#map").prepend("<a data-ng-href='#!/game/start'><img src='/img/backgrounds/conversation.png' /></a>");
+            $("#search").hide();
         }
 
         var geocoder = new Geocoder({ 
