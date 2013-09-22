@@ -1,1 +1,18 @@
-View Games
+<div class="row" data-ng-controller="GamesController">
+	<h1>View Game</h1>
+	<div data-ng-init="find()">
+	    <div data-ng-repeat="game in games">
+		    <div class="row panel">
+		      	<div class="large-8 columns">
+		        	<h2 class="subheader"><% game.sport %></h2>
+		        	<h5 class="subheader"><% game.description %></h5>
+		        	<h5 class="subheader"><% game.location %></h5>
+		      	</div>
+		      	<div class="large-4 columns">
+		      		<button class="large secondary button" data-ng-click="edit(game._id)">Edit</button>
+		      		<button class="large button" data-ng-click="delete(game._id, $index)">Delete</button>
+		      	</div>
+		    </div>
+		</div>
+	</div>
+</div>

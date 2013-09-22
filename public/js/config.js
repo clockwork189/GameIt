@@ -2,13 +2,16 @@
 window.app.config(['$routeProvider',
     function($routeProvider) {
         $routeProvider.
-        when('/create', {
+        when('/game/create', {
             templateUrl: '/views/games/create.html'
         }).
-        when('/:gameId/edit', {
+        when('/edit/game/:gameId', {
             templateUrl: '/views/games/edit.html'
         }).
-        when('/:gameId', {
+        when('/game/viewAll', {
+            templateUrl: '/views/games/index.html'
+        }).
+        when('/game/:gameId', {
             templateUrl: '/views/games/view.html'
         }).
         when('/', {

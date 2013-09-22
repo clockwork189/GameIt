@@ -6,6 +6,22 @@ var mongoose = require('mongoose'),
     Game = mongoose.model('Game'),
     _ = require('underscore');
 
+
+
+/**
+ * Find game by id
+ */
+exports.game = function(req, res, next, id) {
+    Game.findOne({
+            _id: id
+        })
+        .exec(function(err, game) {
+            if (err) return next(err);
+            if (!game) return next(new Error('Failed to load game ' + id));
+            req.profile = game;
+            next();
+        });
+};
 /**
  * Show step by step search form
  */
@@ -36,6 +52,17 @@ exports.updateGame = function (req, res) {
     });
 };
 
+exports.getAllGames = function(req, res) {
+    Game.find().sort('-dateCreated').populate('user').exec(function(err, games) {
+        if (err) {
+            res.render('error.html', {
+                status: 500
+            });
+        } else {
+            res.jsonp(games);
+        }
+    });
+};
 
 exports.deleteGame = function (req, res) {
 	var game = req.game;

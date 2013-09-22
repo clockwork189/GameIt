@@ -44,7 +44,12 @@ angular.module('gameit.games').controller('GamesController', ['$scope', '$routeP
         game.updated.push(new Date().getTime());
 
         game.$update(function() {
-            $location.path('games/' + game._id);
+            $location.path('app/games/' + game._id);
+        });
+    };
+    $scope.findAll = function() {
+        Games.get({gameId: ""}, function(games) {
+            $scope.games = games;
         });
     };
 
@@ -56,7 +61,7 @@ angular.module('gameit.games').controller('GamesController', ['$scope', '$routeP
 
     $scope.findOne = function() {
         Games.get({
-            articleId: $routeParams.articleId
+            gameId: $routeParams.gameId
         }, function(game) {
             $scope.game = game;
         });

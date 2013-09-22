@@ -58,11 +58,14 @@ module.exports = function(app, passport) {
     app.get('/', index.render);
 
     var games = require('../app/controllers/games');
-    app.get('/games/:gameId', auth, games.getGameById);
-    app.post('/games', auth, games.createGame);
-    app.put('/games/:gameId', auth, games.updateGame);
-    app.del('/games/:gameId', auth, games.deleteGame);
     app.get('/games', auth, games.index);
+
+    app.get('/app/games', auth, games.getAllGames);
+    app.get('/app/games/:gameId', auth, games.getGameById);
+    app.post('/app/games', auth, games.createGame);
+    app.put('/app/games/:gameId', auth, games.updateGame);
+    app.del('/app/games/:gameId', auth, games.deleteGame);
+    app.param('gameId', games.game);
 
 };
 var auth = function (req, res, next) {

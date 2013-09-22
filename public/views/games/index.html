@@ -1,3 +1,18 @@
-<section data-ng-controller="IndexController">
-	<h1>This is the home view</h1>
-</section>
+<div class="row" data-ng-controller="GamesController">
+	<h1>View Nearby Games</h1>
+	<div data-ng-init="find()">
+	    <div data-ng-repeat="game in games">
+		    <div class="row panel">
+		      	<div class="large-8 columns">
+		        	<a data-ng-href="#!/game/<% game._id %>"><h2 class="subheader"><% game.sport %></h2></a>
+		        	<h5 class="subheader"><% game.description %></h5>
+		        	<h5 class="subheader"><% game.location %></h5>
+		      	</div>
+		      	<div class="large-4 columns">
+		      		<button class="large secondary button" data-ng-click="edit(game._id)">Edit</button>
+		      		<button class="large button" data-ng-click="delete(game._id, $index)">Delete</button>
+		      	</div>
+		    </div><br/>
+		</div>
+	</div>
+</div>
