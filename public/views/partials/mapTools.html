@@ -109,8 +109,9 @@
       }
       #search_input {
         height: 26px;
-        font-size: 26px;
-        line-height:28px;
+        font-size: 20px;
+        line-height:20px;
+        margin-left: 5px;
       }
       .esriSimpleSlider {
         color:#ff6600;
@@ -154,8 +155,8 @@
                 "dojo/domReady!"], function(Map, on, Edit, Color, Geocoder, SimpleFillSymbol, SimpleMarkerSymbol, InfoTemplate, infoWindowLite, Graphic, ItemFileReadStore, DataCarousel, FeatureLayer, Parser, lang, Draw, PictureMarkerSymbol,UniqueValueRenderer) {
             
                         var map = new Map("map", {
-                                basemap: "satellite",
-                                center:  [-79.362831, 43.723521],
+                                basemap: "topo",
+                                center:  [-80.497813, 43.450964],
                                 zoom: 17,
                                 sliderStyle: "small",
                                 sliderOrientation: "horizontal",
@@ -174,6 +175,7 @@
         function mapLoaded() {
             $("#map").css("height", "533px");
             $("#map_root").css("height", "533px");
+            map.resize();
             //map.setInfoWindow(infoWindowLite);
             //var infoTemplate = new InfoTemplate("${destination}");
             feeLayer = FeatureLayer("http://services1.arcgis.com/epWj2EmjrgksS4ol/arcgis/rest/services/gameIt_Field_Fee/FeatureServer/0", {
@@ -198,7 +200,7 @@
                 "xoffset": 0,
                 "yoffset": 12,
                 "type": "esriPMS",
-                "url": "http://static.arcgis.com/images/Symbols/Basic/YellowStickpin.png",
+                "url": "http://static.arcgis.com/images/Symbols/OutdoorRecreation/Sports.png",
                 "contentType": "image/png",
                 "width": 24,
                 "height": 24
@@ -221,8 +223,28 @@
             featureLayer.on("click", function(evt){
                 showPopup(evt.graphic);
             });
+
+            createCurrentLocationMarker();
+
         }
         
+        function createCurrentLocationMarker(){
+          var logoSymbol = new esri.symbol.PictureMarkerSymbol({
+                "angle": 0,
+                "xoffset": 0,
+                "yoffset": 12,
+                "type": "esriPMS",
+                "url": "/img/gameit_logo.png",
+                "contentType": "image/png",
+                "width": 24,
+                "height": 40
+              });
+           var geo = new esri.geometry.Point(-80.497813, 43.450964, new esri.SpatialReference({ wkid: 4326 }));
+           var graphic = new Graphic(geo, logoSymbol);
+           map.graphics.add(graphic);
+        }
+
+
         function showPopup(graphic)
         {
             var game = graphic.attributes.sport;
@@ -232,6 +254,8 @@
             var date = new Date(graphic.attributes.date);
             var weather = "Partly Cloudy, 12 C";
             var level = "Intermediate";
+
+            
         }
 
         var geocoder = new Geocoder({ 
