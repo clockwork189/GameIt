@@ -5,6 +5,9 @@ window.app.config(['$routeProvider',
         when('/game/start', {
             templateUrl: '/views/games/start.html'
         }).
+        when('/game/profile', {
+            templateUrl: '/views/games/profile.html'
+        }).
         when('/game/map', {
             templateUrl: '/views/games/map.html'
         }).
