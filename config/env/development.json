@@ -1,5 +1,5 @@
 {
-    "db": "mongodb://localhost:27017/gameit",
+    "db": "mongodb://clockwork189:d5A7UYuS@ds045608.mongolab.com:45608/gameit",
     "app": {
         "name": "gameIt: Want to organize or join a pickup game of soccer, basketball or your other favorite sport? Just gameIt!"
     },
