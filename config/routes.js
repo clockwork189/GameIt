@@ -58,13 +58,13 @@ module.exports = function(app, passport) {
     app.get('/', index.render);
 
     var games = require('../app/controllers/games');
-    app.get('/games/map', auth, games.map);
-    app.get('/games', auth, games.index);
-    app.get('/app/games', auth, games.getAllGames);
-    app.get('/app/games/:gameId', auth, games.getGameById);
-    app.post('/app/games', auth, games.createGame);
-    app.put('/app/games/:gameId', auth, games.updateGame);
-    app.del('/app/games/:gameId', auth, games.deleteGame);
+    app.get('/games/map', games.map);
+    app.get('/games', games.index);
+    app.get('/app/games', games.getAllGames);
+    app.get('/app/games/:gameId', games.getGameById);
+    app.post('/app/games', games.createGame);
+    app.put('/app/games/:gameId', games.updateGame);
+    app.del('/app/games/:gameId', games.deleteGame);
     app.param('gameId', games.game);
 
 };

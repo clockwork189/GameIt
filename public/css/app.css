@@ -7218,13 +7218,18 @@ a.th {
   max-width: 800px;
 }
 
-/* line 2, ../sass/_custom.scss */
+/* line 1, ../sass/_custom.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 5, ../sass/_custom.scss */
 .page_tools {
   padding: 20px;
   border: 1px dotted #cecece;
 }
 
-/* line 7, ../sass/_custom.scss */
+/* line 10, ../sass/_custom.scss */
 #bg {
   position: fixed;
   top: 0;
@@ -7234,22 +7239,22 @@ a.th {
   min-height: 100%;
 }
 
-/* line 16, ../sass/_custom.scss */
+/* line 19, ../sass/_custom.scss */
 .splash {
   margin-top: 80px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
 }
-/* line 20, ../sass/_custom.scss */
+/* line 23, ../sass/_custom.scss */
 .splash .panel {
   background-color: rgba(0, 0, 0, 0.8);
 }
-/* line 23, ../sass/_custom.scss */
+/* line 26, ../sass/_custom.scss */
 .splash h1, .splash p {
   color: #fff;
 }
 
-/* line 28, ../sass/_custom.scss */
+/* line 31, ../sass/_custom.scss */
 .iphone {
   background: url("../../img/backgrounds/phone.png");
   width: 820px;
@@ -7259,7 +7264,7 @@ a.th {
   background-size: 100%;
 }
 
-/* line 38, ../sass/_custom.scss */
+/* line 41, ../sass/_custom.scss */
 .start .orange_back {
   background-color: #ff944d;
   color: #fff;
@@ -7267,7 +7272,7 @@ a.th {
   padding-bottom: 10px;
   font-size: 20px;
 }
-/* line 46, ../sass/_custom.scss */
+/* line 49, ../sass/_custom.scss */
 .start .large-12.columns {
   padding: 0px;
   padding-top: 10px;

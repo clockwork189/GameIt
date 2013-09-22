@@ -6,9 +6,9 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
     <title>Simple Map</title>
     <link rel="stylesheet" href="http://js.arcgis.com/3.6/js/esri/css/esri.css">
+  
     <style>
       html, body, #map {
-        height: 100%;
         width: 100%;
         margin: 0;
         padding: 0;
@@ -20,31 +20,44 @@
       }
     
     #search {
-        margin: 20px 10% 0 10%;
+        padding:5px 10px 5px 10px;
+        height:40px;
         position: absolute;
-        width: 80%;
+        width: 100%;
         z-index: 2;
+        background-color: #ff6600;
+        opacity: 0.75;
       }
-    
+     .search_text {
+    position: absolute;
+    color:#fff;
+    font-size: 22px;
+    top: 10px;
+    left: 10px;
+     }
     
       /* customize geocoder appearance */
       .simpleGeocoder, .simpleGeocoder .esriGeocoderContainer {
         font-size: 1em;
         line-height: 1em;
-        height: 4em;
-        width: 100%;
+        height: 2em;
+        width: 70%;
+        float:right;
       }
       .simpleGeocoder .esriGeocoder {
         border: 0;
-        height: 100%;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px;
+        height: 30px;
+        -moz-border-radius: 20px;
+        -webkit-border-radius: 20px;
+        border-radius: 20px;
+        -moz-box-shadow: 0 0 5px #888;
+        -webkit-box-shadow: 0 0 5px #888;
+        box-shadow: 0 0 5px #888;
       }
       .simpleGeocoder .esriGeocoderIcon { 
         display: none;
-        height: 44px;
-        width: 44px;
+        height: 32px;
+        width: 32px;
       }
       .simpleGeocoder .esriGeocoder .esriGeocoderReset {
         margin: 0;
@@ -54,14 +67,16 @@
         cursor: pointer; 
         display: block; 
         background: url("http://dl.dropbox.com/u/2654618/geocoder-reset.gif") no-repeat;
+        background-size: 100%;
       }
       /* use a different loading icon */
       .simpleGeocoder .esriGeocoderLoading .esriGeocoderReset {
         background: url("http://dl.dropbox.com/u/2654618/geocoder-loading.gif") center center no-repeat;
+        background-size: 100%;
       }
       /* make input larger */
       .simpleGeocoder .esriGeocoder input {
-        font-size: 2.4em;
+        font-size: 26px;
         margin: 0 0 0 1.25%;
         padding: 1% 0 1% 0;
         width: 75%;
@@ -92,10 +107,32 @@
         /* default is #EDEDED, use a light blue instead */
         background-color: #B5DAEA;
       }
+      #search_input {
+        height: 26px;
+        font-size: 26px;
+        line-height:28px;
+      }
+      .esriSimpleSlider {
+        color:#ff6600;
+        border: none;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -o-border-radius: 10px;
+        border-radius: 10px;
+        width:65px;
+        height:25px;
+      }
+      .esriSimpleSliderHorizontal .esriSimpleSliderIncrementButton {
+        border-right: none;
+      }
+      input#search_input:focus {outline: none; }
     </style>
-
+  </head>
+    <body>
+    <div id="search"><div class="search_text">Search</div></div>  
+    <div id="map"></div>
     <script src="http://js.arcgis.com/3.6/"></script>
-    <script>
+     <script>
   
 
       var map;
@@ -142,6 +179,8 @@
     var featureLayer;
     
     function mapLoaded() {
+      $("#map").css("height", "533px");
+      $("#map_root").css("height", "533px");
       //map.setInfoWindow(infoWindowLite);
       //var infoTemplate = new InfoTemplate("${destination}");
        feeLayer = FeatureLayer("http://services1.arcgis.com/epWj2EmjrgksS4ol/arcgis/rest/services/gameIt_Field_Fee/FeatureServer/0", {
@@ -260,9 +299,5 @@
         }
       });
     </script>
-  </head>
-    <body>
-    <div id="search"></div>  
-    <div id="map"></div>
   </body>
 </html>
